@@ -5,7 +5,7 @@ import sys
 import time
 from gpiozero import Button
 
-from spotify.spotify import now_playing, skip_song
+from spotify.spotify import now_playing, skip_song, toggle_playback
 
 # Constants
 ROTATION_DEFAULT = 0
@@ -66,14 +66,18 @@ def pressed(button):
         app_running = False
     elif button_name == 'X':
         skip_song()
+    elif button_name == 'Y':
+        toggle_playback()
 
 def setup_buttons():
     button_a = Button(5)
     button_b = Button(6)
     button_x = Button(16)
+    button_y = Button(24)
     button_a.when_pressed = pressed
     button_b.when_pressed = pressed
     button_x.when_pressed = pressed
+    button_y.when_pressed = pressed
 
 def main():
     render_text(STARTUP_MESSAGE)

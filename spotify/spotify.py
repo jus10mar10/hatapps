@@ -54,3 +54,20 @@ def skip_song():
     except:
         sp = refresh_token()
         sp.next_track()
+
+def toggle_playback(sp):
+  """Checks playback state and toggles play/pause accordingly."""
+  try:
+    # Get current playback information
+    current_playback = sp.current_playback()
+
+    # Check playback state (is_playing attribute)
+    if current_playback["is_playing"]:
+      sp.pause_playback()
+      print("Playback paused.")
+    else:
+      sp.start_playback()
+      print("Playback started.")
+  except spotipy.SpotifyException as e:
+    print(f"Error toggling playback: {e}")
+    
