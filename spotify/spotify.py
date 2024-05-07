@@ -13,7 +13,7 @@ redirect_uri = 'http://localhost:8080/callback'
 username = os.getenv('SPOTIFY_USERNAME')
 
 # Set up scope (permissions)
-scope = 'user-read-currently-playing user-modify-playback-state streaming'
+scope = 'user-read-currently-playing user-modify-playback-state streaming user-read-playback-state'
 
 # Get access token
 token = util.prompt_for_user_token(username, scope, client_id=client_id, client_secret=client_secret, redirect_uri=redirect_uri)
