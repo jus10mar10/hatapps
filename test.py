@@ -24,11 +24,9 @@ unicornhatmini.set_rotation(ROTATION_DEFAULT)
 display_width, display_height = unicornhatmini.get_shape()
 unicornhatmini.set_brightness(BRIGHTNESS)
 
-# Initialize Unicorn HAT Mini
-unicornhatmini = UnicornHATMini()
-unicornhatmini.set_rotation(ROTATION_DEFAULT)
-display_width, display_height = unicornhatmini.get_shape()
-unicornhatmini.set_brightness(BRIGHTNESS)
+# App Selection Constants
+APP_NAMES = ["Home", "Spotify"]
+selected_app = 0
 
 def render_text(text):
     font = ImageFont.truetype(FONT_PATH, 8)
@@ -111,10 +109,7 @@ def spotify():
         render_text(now_playing())
         time.sleep(3)  # Add a small delay to avoid consuming too much CPU
 
-# App Selection Constants
-APP_NAMES = ["Home", "Spotify"]
 APPS = [home, spotify]
-selected_app = 0
 
 def main():
     global selected_app
