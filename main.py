@@ -11,7 +11,7 @@ from spotify.spotify import now_playing
 ROTATION_DEFAULT = 0
 BRIGHTNESS = 0.1
 STARTUP_MESSAGE = 'STARTING UP...'
-FONT_PATH = "5x7.ttf"
+FONT_PATH = "assets/5x7.ttf"
 BUTTON_MAP = {
     5: "A",
     6: "B",
