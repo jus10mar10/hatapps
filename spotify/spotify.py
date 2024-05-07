@@ -1,12 +1,16 @@
 import spotipy
 import spotipy.util as util
 import time
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 # Set up your Spotify API credentials
-client_id = 'YOUR_ID_HERE'
-client_secret = 'YOUR_SECRET_HERE'
+client_id = os.getenv('SPOTIFY_CLIENT_ID')
+client_secret = os.getenv('SPOTIFY_CLIENT_SECRET')
 redirect_uri = 'http://localhost:8080/callback'
-username = 'YOUR_USERNAME_HERE'
+username = os.getenv('SPOTIFY_USERNAME')
 
 # Set up scope (permissions)
 scope = 'user-read-currently-playing'
