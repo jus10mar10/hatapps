@@ -22,10 +22,7 @@ token = util.prompt_for_user_token(username, scope, client_id=client_id, client_
 sp = spotipy.Spotify(auth=token)
 
 def refresh_token():
-    # token expired?
-    # Set up scope (permissions)
-    scope = 'user-read-currently-playing'
-
+    # token expired? refresh it
     # Get access token
     token = util.prompt_for_user_token(username, scope, client_id=client_id, client_secret=client_secret, redirect_uri=redirect_uri)
 
