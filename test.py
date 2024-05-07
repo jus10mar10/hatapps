@@ -24,9 +24,6 @@ unicornhatmini.set_rotation(ROTATION_DEFAULT)
 display_width, display_height = unicornhatmini.get_shape()
 unicornhatmini.set_brightness(BRIGHTNESS)
 
-# App Selection Constants
-APP_NAMES = ["Home", "Spotify"]
-selected_app = 0
 
 def render_text(text):
     font = ImageFont.truetype(FONT_PATH, 8)
@@ -50,71 +47,3 @@ def show_text(text_width, image):
             offset_x = 0
         unicornhatmini.show()
         time.sleep(0.04)
-
-# app selection screen
-def home():
-    # button functions
-    def pressed(button):
-        button_name = BUTTON_MAP[button.pin.number]
-        if button_name == "A":
-            pass
-        elif button_name == "B":
-            global selected_app
-            APPS[selected_app]()
-        elif button_name == "X":
-            global selected_app
-            selected_app = (selected_app - 1) % len(APPS)
-            render_text(APP_NAMES[selected_app])
-        elif button_name == "Y":
-            global selected_app
-            selected_app = (selected_app + 1) % len(APPS)
-            render_text(APP_NAMES[selected_app])
-    def setup_buttons():
-        button_a = Button(5)
-        button_b = Button(6)
-        button_x = Button(16)
-        button_y = Button(24)
-        button_a.when_pressed = pressed
-        button_b.when_pressed = pressed
-        button_y.when_pressed = pressed
-        button_x.when_pressed = pressed
-    setup_buttons()
-    # main loop
-    while True:
-        render_text(APP_NAMES[selected_app])
-        time.sleep(3)    
-
-def spotify():
-    def pressed(button):
-        button_name = BUTTON_MAP.get(button.pin.number)
-        if button_name == 'A':  
-            pass
-        elif button_name == 'B':  # Quit button
-            home()
-        elif button_name == 'X':
-            skip_song()
-        elif button_name == 'Y':
-            toggle_playback()
-    def setup_buttons():
-        button_a = Button(5)
-        button_b = Button(6)
-        button_x = Button(16)
-        button_y = Button(24)
-        button_a.when_pressed = pressed
-        button_b.when_pressed = pressed
-        button_x.when_pressed = pressed
-        button_y.when_pressed = pressed
-    setup_buttons()
-    while True:
-        render_text(now_playing())
-        time.sleep(3)  # Add a small delay to avoid consuming too much CPU
-
-APPS = [home, spotify]
-
-def main():
-    global selected_app
-    render_text(STARTUP_MESSAGE)
-    home()
-
-if __name__ == "__main__":
-    main()
